@@ -24,7 +24,15 @@ export default function BookingPage() {
     setLoading(true);
     setMessage("");
 
-    const { error } = await supabase.from("bookings").insert([form]);
+    const { error } = await supabase
+  .from("bookings")
+  .insert([
+    {
+      ...form,
+      tour_date: form.tour_date, // already YYYY-MM-DD
+    },
+  ]);
+
 
     if (error) {
       setMessage("❌ Booking failed");
