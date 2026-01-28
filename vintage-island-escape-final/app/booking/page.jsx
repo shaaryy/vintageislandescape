@@ -5,12 +5,12 @@ import { supabase } from "../../supabase";
 
 
 export default function BookingPage() {
-  const [form, setForm] = useState({
-    name: "",
-    phone: "",
-    tour_type: "",
-    tour_date: "",
-  });
+ const [form, setForm] = useState({
+  name: "",
+  phone: "",
+  ride_type: "",
+  date: "",
+});
 
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
@@ -73,22 +73,22 @@ export default function BookingPage() {
         />
         <br /><br />
 
-        <input
-          name="tour_type"
-          placeholder="Tour type"
-          value={form.tour_type}
-          onChange={handleChange}
-          required
-        />
-        <br /><br />
+      <input
+  name="ride_type"
+  placeholder="Ride type"
+  value={form.ride_type}
+  onChange={handleChange}
+  required
+/>
 
-        <input
-          type="date"
-          name="tour_date"
-          value={form.tour_date}
-          onChange={handleChange}
-          required
-        />
+<input
+  type="date"
+  name="date"
+  value={form.date}
+  onChange={handleChange}
+  required
+/>
+
         <br /><br />
 
         <button type="submit" disabled={loading}>
