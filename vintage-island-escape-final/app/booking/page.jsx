@@ -26,7 +26,7 @@ export default function BookingPage() {
 
     const { error } = await supabase
   .from("bookings")
-  .insert([
+  .insert([ form
     {
       ...form,
       tour_date: form.tour_date, // already YYYY-MM-DD
@@ -55,30 +55,22 @@ export default function BookingPage() {
       <h1>Book a Tour</h1>
 
       <form onSubmit={handleSubmit} style={{ maxWidth: 400 }}>
-        <input
-          name="name"
-          placeholder="Your name"
-          value={form.name}
-          onChange={handleChange}
-          required
-        />
-        <br /><br />
+       <input
+  name="name"
+  value={form.name}
+  onChange={handleChange}
+/>
 
-        <input
-          name="phone"
-          placeholder="Phone number"
-          value={form.phone}
-          onChange={handleChange}
-          required
-        />
-        <br /><br />
+<input
+  name="phone"
+  value={form.phone}
+  onChange={handleChange}
+/>
 
-      <input
+<input
   name="ride_type"
-  placeholder="Ride type"
   value={form.ride_type}
   onChange={handleChange}
-  required
 />
 
 <input
@@ -86,8 +78,8 @@ export default function BookingPage() {
   name="date"
   value={form.date}
   onChange={handleChange}
-  required
 />
+
 
         <br /><br />
 
