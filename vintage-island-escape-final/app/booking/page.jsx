@@ -5,12 +5,17 @@ import { supabase } from "../../supabase";
 
 
 export default function BookingPage() {
- const [form, setForm] = useState({
-  name: "",
-  phone: "",
-  ride_type: "",
-  date: "",
-});
+const { error } = await supabase
+  .from("bookings")
+  .insert([
+    {
+      name: form.name,
+      phone: form.phone,
+      date: form.date,
+      ride_type: form.tour_type,
+    }
+  ]);
+
 
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
@@ -86,3 +91,4 @@ const { error } = await supabase
     </main>
   );
 }
+Fix bookings insert and relax DB constraints
