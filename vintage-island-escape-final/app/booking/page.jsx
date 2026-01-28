@@ -5,16 +5,13 @@ import { supabase } from "../../supabase";
 
 
 export default function BookingPage() {
-const { error } = await supabase
-  .from("bookings")
-  .insert([
-    {
-      name: form.name,
-      phone: form.phone,
-      date: form.date,
-      ride_type: form.tour_type,
-    }
-  ]);
+const [form, setForm] = useState({
+  name: "",
+  phone: "",
+  ride_type: "",
+  date: "",
+});
+
 
 
   const [loading, setLoading] = useState(false);
