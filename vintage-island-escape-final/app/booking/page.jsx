@@ -40,10 +40,10 @@ export default function BookingPage() {
     } else {
       setMessage("✅ Booking successful!");
       setForm({
-        name: "",
-        phone: "",
-        tour_type: "",
-        tour_date: "",
+       name: "",
+  phone: "",
+  ride_type: "",
+  date: "",
       });
     }
 
