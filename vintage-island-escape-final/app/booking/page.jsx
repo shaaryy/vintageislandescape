@@ -26,10 +26,10 @@ export default function BookingPage() {
     const { error } = await supabase.from("bookings").insert([form]);
 
     if (error) {
+      setMessage("❌ Booking failed");
       console.error(error);
-      setMessage("❌ Error submitting booking.");
     } else {
-      setMessage("✅ Booking received! We’ll contact you soon.");
+      setMessage("✅ Booking successful!");
       setForm({
         name: "",
         phone: "",
@@ -42,41 +42,36 @@ export default function BookingPage() {
   };
 
   return (
-    <main style={{ padding: 40, maxWidth: 500 }}>
-      <h1>Book Your Island Tour 🌴</h1>
+    <main style={{ padding: 20 }}>
+      <h1>Book a Tour</h1>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} style={{ maxWidth: 400 }}>
         <input
           name="name"
-          placeholder="Your Name"
+          placeholder="Your name"
           value={form.name}
           onChange={handleChange}
           required
-          style={{ width: "100%", padding: 10, marginBottom: 10 }}
         />
+        <br /><br />
 
         <input
           name="phone"
-          placeholder="Phone / WhatsApp"
+          placeholder="Phone number"
           value={form.phone}
           onChange={handleChange}
           required
-          style={{ width: "100%", padding: 10, marginBottom: 10 }}
         />
+        <br /><br />
 
-        <select
+        <input
           name="tour_type"
+          placeholder="Tour type"
           value={form.tour_type}
           onChange={handleChange}
           required
-          style={{ width: "100%", padding: 10, marginBottom: 10 }}
-        >
-          <option value="">Select Tour</option>
-          <option value="Sandbank Trip">Sandbank Trip</option>
-          <option value="Snorkeling">Snorkeling</option>
-          <option value="Island Hopping">Island Hopping</option>
-          <option value="Sunset / Dolphin Tour">Sunset / Dolphin Tour</option>
-        </select>
+        />
+        <br /><br />
 
         <input
           type="date"
@@ -84,26 +79,15 @@ export default function BookingPage() {
           value={form.tour_date}
           onChange={handleChange}
           required
-          style={{ width: "100%", padding: 10, marginBottom: 10 }}
         />
+        <br /><br />
 
-        <button
-          type="submit"
-          disabled={loading}
-          style={{
-            width: "100%",
-            padding: 12,
-            backgroundColor: "#0ea5e9",
-            color: "white",
-            border: "none",
-            cursor: "pointer",
-          }}
-        >
-          {loading ? "Booking..." : "Book Now"}
+        <button type="submit" disabled={loading}>
+          {loading ? "Booking..." : "Submit Booking"}
         </button>
       </form>
 
-      {message && <p style={{ marginTop: 15 }}>{message}</p>}
+      <p>{message}</p>
     </main>
   );
 }
